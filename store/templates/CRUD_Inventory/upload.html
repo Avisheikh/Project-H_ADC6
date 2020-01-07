@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Fill To add in table</title>
+</head>
+<body>
+    <form method="POST" action="upload">
+        {% csrf_token %}
+        <label for="">Product_Name</label>
+        <input type="text" name="Product_Name"><br>
+        <label for="">Product_Type</label>
+        <input type="text" name="Product_Type"><br>
+        <label for="">Product_Price</label>
+        <input type="number" name="Product_Price"><br>
+        <label for="">Product_Quantity</label>
+        <input type="number" name="Product_Quantity"><br>
+        <input type="submit" name="" id="">
+
+
+    </form>
+</body>
+</html>
