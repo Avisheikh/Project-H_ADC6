@@ -25,14 +25,14 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                  <a class="nav-link" href="{% url 'home' %}"><span class="sr-only">(current)</span></a>
+                  <a class="nav-link" href="{% url 'admin' %}">HOME<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="{% url 'store' %}"></a>
                 </li>
               </ul>
-              <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+              <form class="form-inline my-2 my-lg-0" method="GET" action="/store/admin_products/search/">
+                <input class="form-control mr-sm-2" name="searchs"  placeholder="Enter Product Name or Category" style="width: 17.5rem;">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
               </form>
             </div>
@@ -68,6 +68,39 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <div>
+                            {% if messages %}
+                                <ul class="messages">
+                                    {% for k in messages %}
+                                    <li style="color:red">{{k}}</li>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+                        </div>
+                        {%if sr %}
+                        {% for x in sr %}
+                        <tr>
+                            <td>
+                                <span class="custom-checkbox">
+                                    <input type="checkbox">
+                                    <label for="checkbox"></label>
+                                </span>
+                            </td>
+                            <td>{{x.Product_Name}}</td>
+                            <td>{{x.Product_Type}}</td>
+                            <td>{{x.Product_Price}}</td>
+                            <td>{{x.Product_Quantity}}</td>
+                            <td>
+                                <a href="edit/{{x.id}}"><span class="btn btn-primary">Edit</span></a>
+                                
+                            </td>
+                            <td>
+                                <a href="delete/{{x.id}}"><span class="btn btn-danger">Delete</span></a>
+                             
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        {% else %}
                         {% for x in product %}
                         <tr>
                             <td>
@@ -90,6 +123,7 @@
                             </td>
                         </tr>
                         {% endfor %}
+                        {% endif %}
                     </tbody>
                 </table>
                 <div class="clearfix">

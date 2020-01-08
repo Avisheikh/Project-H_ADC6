@@ -9,6 +9,7 @@ urlpatterns = [
     path('admin_products/upload/save/',uploaded_save),
     path('admin_products/edit/<int:id>',get_product),
     path('admin_products/edit/update/<int:id>', update_product),
-    path('admin_products/delete/<int:id>', delete_product)
+    path('admin_products/delete/<int:id>', delete_product),
+    path("admin_products/search/", search)
 ]
 

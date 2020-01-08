@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from store.models import product
-from django.http import HttpResponse
+from django.http import *
+from django.db.models import Q
+from django.contrib import messages
 
 # Create your views here.
 def store(request):
@@ -21,7 +23,7 @@ def uploaded_save(request):
     qty=request.POST['Product_Quantity']
 
     product.objects.create(Product_Name=name, Product_Type=typ,Product_Price=price,Product_Quantity=qty)
-    return HttpResponse("Saved")
+    return HttpResponseRedirect('/store/admin_products/')
 
 def get_product(request,id):
     get_id = product.objects.get(id=id)
@@ -35,14 +37,33 @@ def update_product(request,id):
     get_id.Product_Price = request.POST['price']
     get_id.Product_Quantity = request.POST['qty']
     get_id.save()
-    return HttpResponse('Updated')
+    return HttpResponseRedirect('/store/admin_products/')
 
 def delete_product(request,id):
     x = product.objects.get(id = id)
     x.delete()
-    return HttpResponse("Deleted")
+    return HttpResponseRedirect('/store/admin_products/')
    
-    
+def search(request):
+    if request.method == 'GET':
+        search = request.GET['searchs']
+
+        if search:
+            match = product.objects.filter(
+                Q( Product_Name__icontains=search) | Q(Product_Type__icontains=search)
+            )
+
+            if match:
+                return render(request,'CRUD_Inventory/Admin_CRUD_Products.html',{'sr':match})
+
+            else:
+                messages.error(request,'No Result Found')
+
+        else:
+            return HttpResponseRedirect('/store/admin_products/')
+
+    return render(request, 'CRUD_Inventory/Admin_CRUD_Products.html')
+
    
 
 
