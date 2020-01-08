@@ -47,7 +47,7 @@
                         </div>
                         <div class="col-sm-6">
                             <a href="upload/" ><span class="btn btn-success">Add Product</span></a>
-                            <a href="" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>						
+                           	
                         </div>
                     </div>
                 </div>
@@ -82,6 +82,11 @@
                             <td>{{x.Product_Quantity}}</td>
                             <td>
                                 <a href="edit/{{x.id}}"><span class="btn btn-primary">Edit</span></a>
+                                
+                            </td>
+                            <td>
+                                <a href="delete/{{x.id}}"><span class="btn btn-danger">Delete</span></a>
+                             
                             </td>
                         </tr>
                         {% endfor %}

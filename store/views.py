@@ -36,3 +36,13 @@ def update_product(request,id):
     get_id.Product_Quantity = request.POST['qty']
     get_id.save()
     return HttpResponse('Updated')
+
+def delete(request,id):
+    get_product = product.object.get(id = id)
+    get_product.delete()
+    return render(request,'CRUD_Inventory/delete.html')
+   
+    
+   
+
+
