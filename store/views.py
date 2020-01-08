@@ -37,10 +37,10 @@ def update_product(request,id):
     get_id.save()
     return HttpResponse('Updated')
 
-def delete(request,id):
-    get_product = product.object.get(id = id)
-    get_product.delete()
-    return render(request,'CRUD_Inventory/delete.html')
+def delete_product(request,id):
+    x = product.objects.get(id = id)
+    x.delete()
+    return HttpResponse("Deleted")
    
     
    
