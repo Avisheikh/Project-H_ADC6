@@ -1,8 +1,9 @@
 from django.shortcuts import render
-from store.models import product
+from store.models import *
 from django.http import *
 from django.db.models import Q
 from django.contrib import messages
+from django.core.files.storage import FileSystemStorage
 
 # Create your views here.
 def store(request):
@@ -28,6 +29,8 @@ def uploaded_save(request):
 def get_product(request,id):
     get_id = product.objects.get(id=id)
     return render(request,'CRUD_Inventory/update.html',{'product':get_id})
+
+
 
 def update_product(request,id):
     get_id = product.objects.get(id=id)
@@ -64,6 +67,30 @@ def search(request):
 
     return render(request, 'CRUD_Inventory/Admin_CRUD_Products.html')
 
+def upload_list(request):
+    list_upload = upload_files.objects.all()
+    return render(request,'CRUD_Inventory/uploaded.html',{'lists':list_upload})
+
+    
+
+def upload_file(request):
+    if request.method == 'POST':
+        form = request.POST 
+        uploaded_file = request.FILES['document']
+        file_namee = request.POST['file']
+        file_type = request.POST['format']
+        upload_files.objects.create(File_Name = file_namee,File_Type =file_type, pdf=uploaded_file)
+        
+        
+    return render(request,'CRUD_Inventory/upload_file.html')
+
+def run(request,id):
+    a = upload_files.objects.get(id=id)
+    a.delete()
+    return HttpResponseRedirect('/store/admin_products/uploaded_file/')
+
+# def uploaded_file(request):
+#     return render(request,)
    
 
 

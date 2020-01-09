@@ -6,6 +6,15 @@ class product(models.Model):
     Product_Price = models.DecimalField(max_digits=20000,decimal_places=3)
     Product_Description = models.TextField(blank=True)
     Product_Quantity = models.IntegerField()
+    
 
     def __str__(self):
         return self.Product_Name
+
+class upload_files(models.Model):
+    File_Name = models.CharField(max_length=140)
+    File_Type = models.CharField(max_length=140,null=True)
+    pdf = models.FileField(upload_to='files/',null=True)
+
+    def __str__(self):
+        return self.File_Name
