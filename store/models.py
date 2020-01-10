@@ -12,10 +12,13 @@ class product(models.Model):
 
     def TestPrice(self):
         return (self.Product_Price > 0.000)  and (self.Product_Quantity > 0)
+
     def TestProductType(self):
         return (self.Product_Type == "wire") or (self.Product_Type == "wireless")
+
     def TestProductNameAndType(self):
         return (self.Product_Name != self.Product_Type)
+        
     def TestProductDescription(self):
         return (len(self.Product_Description) > 50)
 class upload_files(models.Model):
