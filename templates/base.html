@@ -5,14 +5,58 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{% static "css/admin_style.css" %}">
+    <link rel="stylesheet" href="{% static "css/style.css" %}">
+    <link rel="stylesheet" href="{% static "css/font-awesome.min.css" %}">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static "css/responsive.css" %}">
+    
+    <link rel="stylesheet" href="{% static "css/owl.carousel.css" %}">
     <link rel="stylesheet" href="{% static "css/bootstrap.min.css" %}">
+    
 
     <title>SkullCandy</title>
+
+    {% block contents %}{% endblock %}
 </head>
 <body>
     <header>
+      <div class="header-area " >
+        <nav  style="background-color:#4dc6b3;">
+        <div class="container ">
+            <div class="row">
+                <div class="col-md-8" >
+                    <div class="user-menu " >
+                        <ul >
+                            
+                            {% if user.is_authenticated  %}
+                            
+                              
+                            <li style="color:white;">
+                              Welcome, {{user.first_name|upper}}
+                            </li>
+                            <li ><a href="{{'/profile/'}}" class="text-light"><i class="fa fa-user text-light"></i> My Account</a></li>
+                            <li><a href="{% url 'admin' %}" class="text-light"><i class="fa fa-heart text-light"></i> CRUD_PRODUCT</a></li>
+                            <li><a href="{% url 'carts' %}" class="text-light"><i class="fa fa-user text-light"></i> My Cart</a></li>
+                            <li><a href="{% url 'signout' %}" class="text-light"><i class="fa fa-user "></i> Sign Out</a></li>
+                            {% else %}
+                            <li ><a href="{{'/profile/'}}" class="text-light"><i class="fa fa-user text-light"></i> My Account</a></li>
+                            <li><a href="{% url 'admin' %}" class="text-light"><i class="fa fa-heart text-light"></i>  CRUD_PRODUCT</a></li>
+                            <li><a href="{% url 'signin' %}" class="text-light"><i class="fa fa-user text-light"></i> My Cart</a></li>
+                            <li><a href="{% url 'signup' %}" class="text-light"><i class="fa fa-user text-light"></i> Sign Up</a></li>
+                            <li><a href="{% url 'signin' %}" class="text-light"><i class="fa fa-user "></i> Sign In</a></li>
+                            {% endif %}
+                          </ul>
+                    </div>
+                </div>
+
+        </div>
+      </nav>
+    </div> <!-- End header area -->
+    
+      
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#"><img src="{% static "img/logo.png" %}" alt="SkullCandy" style="width:10rem; height:2rem;"></a>
+        <a class="navbar-brand" href="{% url 'home' %}"><img src="{% static "img/logo.png" %}" alt="SkullCandy" style="width:10rem; height:2rem;"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -26,23 +70,22 @@
               <a class="nav-link" href="{% url 'store' %}">Store</a>
             </li>
           </ul>
-          <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+          <form class="form-inline my-2 my-lg-0" method="GET" action="/store/search/">
+            <input class="form-control mr-sm-2" name="search"  placeholder="Enter Product Name or Category" style="width: 17.5rem;">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
           </form>
+          
         </div>
       </nav>
-      <br>
-      <br>
 
           {% block content %}{% endblock %}
-          <br><br>
-         
+          
+<!--          
           <h1 class="text-center">Link To Go To CRUD Inventory: 
-              <a href="http://127.0.0.1:8000/store/admin_products/">http://127.0.0.1:8000/store/admin_products/</a></h1>
+              <a href="http://127.0.0.1:8000/store/admin_products/">http://127.0.0.1:8000/store/admin_products/</a></h1> -->
          
           
-    </header><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    </header>
 
             <!-- Footer -->
         <footer class="page-footer font-small bg-dark text-white">
@@ -60,9 +103,8 @@
         <!-- Footer -->
 
 
-
-    <script src="{% static "js/bootstrap.min.js" %}">
-    
-    </script>
+    <script src="{% static "js/jquery.min.js" %}"> </script>
+    <script src="{% static "js/bootstrap.min.js" %}"> </script>
+     <script src="{% static "js/owl.carousel.min.js" %}"></script>
 </body>
 </html>

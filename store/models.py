@@ -1,11 +1,14 @@
 from django.db import models
-import re
+
+
 class product(models.Model):
     Product_Name = models.CharField(max_length=120)
     Product_Type = models.CharField(max_length=120)
     Product_Price = models.DecimalField(max_digits=20000,decimal_places=3)
     Product_Description = models.TextField(blank=True)
     Product_Quantity = models.IntegerField()
+    img = models.FileField(upload_to='photos/')
+
     
     def __str__(self):
         return self.Product_Name
@@ -21,6 +24,9 @@ class product(models.Model):
         
     def TestProductDescription(self):
         return (len(self.Product_Description) > 50)
+
+
+
 class upload_files(models.Model):
     File_Name = models.CharField(max_length=140)
     File_Type = models.CharField(max_length=140,null=True)
@@ -31,4 +37,8 @@ class upload_files(models.Model):
     
     def Test_name_type(self):
         return (self.File_Name != self.File_Type)
+
+
+
+
 

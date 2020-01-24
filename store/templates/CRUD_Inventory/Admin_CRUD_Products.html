@@ -17,7 +17,7 @@
 <body>
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="#"><img src="{% static "img/logo.png" %}" alt="SkullCandy" style="width:10rem; height:2rem;"></a>
+            <a class="navbar-brand" href="{% url 'home' %}"><img src="{% static "img/logo.png" %}" alt="SkullCandy" style="width:10rem; height:2rem;"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
@@ -27,6 +27,9 @@
                 <li class="nav-item active">
                   <a class="nav-link" href="{% url 'admin' %}">HOME<span class="sr-only">(current)</span></a>
                 </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'home' %}">BACK<span class="sr-only">(current)</span></a>
+                  </li>
                 <li class="nav-item">
                   <a class="nav-link" href="{% url 'store' %}"></a>
                 </li>
@@ -46,7 +49,7 @@
                             <h2>Manage <b>Products</b></h2>
                         </div>
                         <div class="col-sm-6">
-                            <a href="upload/" ><span class="btn btn-success">Add Product</span></a>
+                            <a href="/store/admin_products/upload/" ><span class="btn btn-success">Add Product</span></a>
                             <a href="/store/admin_products/uploaded_file/" ><span class="btn btn-success">Upload/Download Page</span></a>
                            	
                         </div>
@@ -92,11 +95,35 @@
                             <td>{{x.Product_Price}}</td>
                             <td>{{x.Product_Quantity}}</td>
                             <td>
-                                <a href="edit/{{x.id}}"><span class="btn btn-primary">Edit</span></a>
+                                <a href="/store/admin_products/edit/{{x.id}}"><span class="btn btn-primary">Edit</span></a>
                                 
                             </td>
                             <td>
-                                <a href="delete/{{x.id}}"><span class="btn btn-danger">Delete</span></a>
+                                <a href="/store/admin_products/delete/{{x.id}}"><span class="btn btn-danger">Delete</span></a>
+                             
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        {% else %}
+                        {% if prod%}
+                        {% for x in prod%}
+                        <tr>
+                            <td>
+                                <span class="custom-checkbox">
+                                    <input type="checkbox">
+                                    <label for="checkbox"></label>
+                                </span>
+                            </td>
+                            <td>{{x.Product_Name}}</td>
+                            <td>{{x.Product_Type}}</td>
+                            <td>{{x.Product_Price}}</td>
+                            <td>{{x.Product_Quantity}}</td>
+                            <td>
+                                <a href="/store/admin_products/edit/{{x.id}}"><span class="btn btn-primary">Edit</span></a>
+                                
+                            </td>
+                            <td>
+                                <a href="/store/admin_products/delete/{{x.id}}"><span class="btn btn-danger">Delete</span></a>
                              
                             </td>
                         </tr>
@@ -115,16 +142,17 @@
                             <td>{{x.Product_Price}}</td>
                             <td>{{x.Product_Quantity}}</td>
                             <td>
-                                <a href="edit/{{x.id}}"><span class="btn btn-primary">Edit</span></a>
+                                <a href="/store/admin_products/edit/{{x.id}}"><span class="btn btn-primary">Edit</span></a>
                                 
                             </td>
                             <td>
-                                <a href="delete/{{x.id}}"><span class="btn btn-danger">Delete</span></a>
+                                <a href="/store/admin_products/delete/{{x.id}}"><span class="btn btn-danger">Delete</span></a>
                              
                             </td>
                         </tr>
                         {% endfor %}
                         {% endif %}
+                        {% endif%}
                     </tbody>
                 </table>
                 
@@ -135,11 +163,11 @@
                     <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
                     <ul class="pagination">
                         <li class="page-item disabled"><a href="#">Previous</a></li>
-                        <li class="page-item"><a href="#" class="page-link">1</a></li>
-                        <li class="page-item"><a href="#" class="page-link">2</a></li>
-                        <li class="page-item active"><a href="#" class="page-link">3</a></li>
-                        <li class="page-item"><a href="#" class="page-link">4</a></li>
-                        <li class="page-item"><a href="#" class="page-link">5</a></li>
+                        <li class="page-item"><a href="/store/admin_products/page/1" class="page-link">1</a></li>
+                        <li class="page-item"><a href="/store/admin_products/page/2" class="page-link">2</a></li>
+                        <li class="page-item"><a href="/store/admin_products/page/3" class="page-link">3</a></li>
+                        <li class="page-item"><a href="/store/admin_products/page/4" class="page-link">4</a></li>
+                        <li class="page-item"><a href="/store/admin_products/page/5" class="page-link">5</a></li>
                         <li class="page-item"><a href="#" class="page-link">Next</a></li>
                     </ul>
                 </div>

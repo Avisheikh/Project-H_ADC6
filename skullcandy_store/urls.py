@@ -17,11 +17,16 @@ from django.contrib import admin
 from django.urls import path,include
 from django.conf import settings
 from django.conf.urls.static import static
+from home import views
 
 urlpatterns = [
+    path('',include('home.urls')),
     path('admin/', admin.site.urls),
-    path('home/',include('home.urls')),
-    path('store/',include('store.urls'))
+    path('store/',include('store.urls')),
+    path('signupform/',include('signin_signup.urls')),
+    path('profile/',include('my_account.urls')),
+    path('cart/',include('cart.urls'))
+
 ]
 
 if settings.DEBUG:
