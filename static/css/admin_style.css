@@ -217,3 +217,22 @@ table.table .avatar {
 .modal form label {
     font-weight: normal;
 }	
+
+.btnn{
+    position: absolute;
+    top:0px;
+    right:10px;
+    width:90px;
+    height:50px;
+    background-color: #48b9a7; /* Green */
+    border-radius: 250px;
+    color: white;
+    
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+
+

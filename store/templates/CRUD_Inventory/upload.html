@@ -18,23 +18,32 @@
     <header>
             
         <!-- Default form login -->
-<form class="text-center border border-light p-5" method="POST" action="save/">
+<form class="text-center border border-light p-5" method="POST" action="save/" enctype="multipart/form-data">
         {% csrf_token %}
-    <p class="h4 mb-4">Update Product</p>
+    <p class="h4 mb-4">Upload Product</p>
 
     <div class="form-group " ><!-- form-group Starts -->
 
         <label class="col-md-3 control-label" > Product Name </label>
         <input type="text" name="Product_Name" class="form-control" required >
-
+        <br>
         <label class="col-md-3 control-label" > Product Type  </label>
         <input type="text" name="Product_Type" class="form-control" required >
-
+        <br>
         <label class="col-md-3 control-label" > Product Price </label>
         <input type="number" name="Product_Price" class="form-control" required >
-
+        <br>
         <label class="col-md-3 control-label" > Product Quantity </label>
         <input type="number" name="Product_Quantity" class="form-control" required >
+        <br>
+        <label class="col-md-3 control-label" > Upload Image </label>
+        <div class="input-group">
+            <div class="custom-file">
+              <input type="file" class="custom-file-input" id="inputGroupFile01" name="Product_Image"
+                aria-describedby="inputGroupFileAddon01">
+              <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+            </div>
+          </div>
         
         
 
