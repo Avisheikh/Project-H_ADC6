@@ -1,4 +1,4 @@
-{% load static %}
+{% load static %} <!-- To load files from static folder which is located at root folder. -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,7 +35,7 @@
                 </li>
               </ul>
               <form class="form-inline my-2 my-lg-0" method="GET" action="/store/admin_products/search/">
-                <input class="form-control mr-sm-2" name="searchs"  placeholder="Enter Product Name or Category" style="width: 17.5rem;">
+                <input class="form-control mr-sm-2" name="search"  placeholder="Enter Product Name or Category" style="width: 17.5rem;">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
               </form>
             </div>
@@ -73,6 +73,7 @@
                     </thead>
                     <tbody>
                         <div>
+                            <!---->
                             {% if messages %}
                                 <ul class="messages">
                                     {% for k in messages %}

@@ -1,7 +1,8 @@
 from django.db import models
 
-
-class product(models.Model):
+# create table product
+class Product(models.Model):
+    # insert attribute according to their datatype
     Product_Name = models.CharField(max_length=120)
     Product_Type = models.CharField(max_length=120)
     Product_Price = models.DecimalField(max_digits=20000,decimal_places=3)
@@ -13,6 +14,7 @@ class product(models.Model):
     def __str__(self):
         return self.Product_Name
 
+    # Test Case
     def TestPrice(self):
         return (self.Product_Price > 0.000)  and (self.Product_Quantity > 0)
 
@@ -26,7 +28,7 @@ class product(models.Model):
         return (len(self.Product_Description) > 50)
 
 
-
+# create table upload_files
 class upload_files(models.Model):
     File_Name = models.CharField(max_length=140)
     File_Type = models.CharField(max_length=140,null=True)
